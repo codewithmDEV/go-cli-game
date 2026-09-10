@@ -94,6 +94,8 @@ class Game:
 
         self.passes += 1
 
+        self.previous_board_state = None  # Reset previous board state on pass
+
         if self.passes >= 2:
             self.game_over = True
             return True

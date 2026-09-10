@@ -17,6 +17,8 @@ class Game:
             "white": 0
         }
 
+        self.previous_board_state = None
+
     def add_player(self, name, color):
         if len(self.players) >= 2:
             raise ValueError("Cannot add more than two players.")
@@ -34,6 +36,15 @@ class Game:
             self.current_player_index + 1
         ) % len(self.players)
 
+    def get_board_state(self):
+        return tuple(
+            tuple(
+                stone.color if stone else None
+                for stone in row
+            )
+            for row in self.board.grid
+        )
+
     def play_move(self, row, col):
         if self.game_over:
             raise ValueError("The game is already over.")
@@ -48,18 +59,25 @@ class Game:
             self.board,
             row,
             col,
-            stone
+            stone,
+            self.previous_board_state
         ):
             raise ValueError("Invalid move.")
 
+        # Save the current position before changing the board.
+        self.previous_board_state = self.get_board_state()
+
+        # Actually place the stone.
         self.board.place_stone(row, col, stone)
 
+        # Find captured groups.
         captured_groups = Rules.get_captured_groups(
             self.board,
             row,
             col
         )
 
+        # Remove captured groups and update score.
         for group in captured_groups:
             self.captured_stones[current_player.color] += len(group)
             Rules.capture_group(self.board, group)

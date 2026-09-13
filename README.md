@@ -67,19 +67,19 @@ go-cli-game/
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/codewithmDEV/go-cli-game
 cd go-cli-game
 ```
 
 ### 2. Create a virtual environment
 
 ```bash
-python3 -m venv venv
+python3 -m venv .venv
 ```
 
 ### 3. Activate the virtual environment
 
-Linux/macOS:
+Linux:
 
 ```bash
 source venv/bin/activate

@@ -5,7 +5,7 @@ STONE_WHITE = "◯"
 EMPTY_INTERSECTION = "┼"
 LETTERS = "ABCDEFGHJKLMNOPQRSTUVWXYZ"  # Skips 'I'
 
-def render_board(board_matrix: list[list[str]], captured_black: int = 0, captured_white: int = 0) -> str:
+def render_board(board_matrix: list[list[object | None]], captured_black: int = 0, captured_white: int = 0) -> str:
     size = len(board_matrix)
     cols = LETTERS[:size]
     lines = []
@@ -19,9 +19,13 @@ def render_board(board_matrix: list[list[str]], captured_black: int = 0, capture
         
         for col_idx in range(size):
             cell = board_matrix[row_idx][col_idx]
-            if cell == "B":
+            
+            # Check for stone.color attribute on Stone objects, with string/None fallback
+            color = getattr(cell, "color", cell) if cell is not None else None
+            
+            if color == "black" or color == "B":
                 symbol = STONE_BLACK
-            elif cell == "W":
+            elif color == "white" or color == "W":
                 symbol = STONE_WHITE
             else:
                 symbol = EMPTY_INTERSECTION

@@ -15,19 +15,19 @@ def test_save_and_load_game(tmp_path):
     storage.save_game(game_data)
     loaded = storage.load_game()
 
-    assert loaded == game_data
+    assert loaded == game_data  # ✅ check saved == loaded
 
 def test_load_missing_file(tmp_path):
     file_path = tmp_path / "missing.json"
     storage = JSONStorage(str(file_path))
     loaded = storage.load_game()
-    assert loaded == {}
+    assert loaded == {}  # ✅ missing file returns empty dict
 
 def test_load_corrupted_file(tmp_path):
     file_path = tmp_path / "bad.json"
     with open(file_path, "w") as f:
-        f.write("{not valid json}")
+        f.write("{not valid json}")  # invalid JSON
 
     storage = JSONStorage(str(file_path))
     loaded = storage.load_game()
-    assert loaded == {}
+    assert loaded == {}  # ✅ corrupted file handled safely

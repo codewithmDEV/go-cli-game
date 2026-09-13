@@ -60,7 +60,7 @@ go-cli-game/
 ├── main.py
 ├── requirements.txt
 └── pytest.ini
-
+```
 
 ## How to Run
 

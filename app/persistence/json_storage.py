@@ -17,7 +17,7 @@ class JSONStorage:
             return {}
         try:
             with open(self.filename, "r") as f:
-                return json.load(f)
+                return json.load(f)   # ✅ actually reads JSON now
         except json.JSONDecodeError:
             print("Error: Save file is corrupted.")
             return {}

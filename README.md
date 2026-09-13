@@ -66,7 +66,7 @@ go-cli-game/
 
 ### 1. Clone the repository
 
-```bash
+```
 git clone https://github.com/codewithmDEV/go-cli-game
 cd go-cli-game
 ```

@@ -60,26 +60,26 @@ go-cli-game/
 ├── main.py
 ├── requirements.txt
 └── pytest.ini
-
+```
 
 ## How to Run
 
 ### 1. Clone the repository
 
-```
+```bash
 git clone https://github.com/codewithmDEV/go-cli-game
 cd go-cli-game
 ```
 
 ### 2. Create a virtual environment
 
-```
-python3 -m venv .venv
+```bash
+python3 -m venv venv
 ```
 
 ### 3. Activate the virtual environment
 
-Linux:
+Linux/macOS:
 
 ```bash
 source venv/bin/activate
